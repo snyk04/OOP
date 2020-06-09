@@ -23,4 +23,27 @@ public class Text {
     public void setParagraphs(Paragraph[] paragraphs) {
         this.paragraphs = paragraphs;
     }
+
+    public StringBuilder getStringText() {
+
+        StringBuilder text = new StringBuilder("");
+
+        for (Paragraph paragraph: this.paragraphs) {
+            for (Sentence sentence: paragraph.getSentences()) {
+                for (MemberOfSentence memberOfSentence: sentence.getMembersOfSentence()) {
+
+                    if (memberOfSentence instanceof Word) {
+                        for (Letter letter: ((Word) memberOfSentence).getLetters()) {
+                            text.append(letter.getContent());
+                        }
+                    } else if (memberOfSentence instanceof PunctuationMark) {
+                        text.append(((PunctuationMark) memberOfSentence).getContent());
+                        text.append(" ");
+                    }
+                }
+            }
+            text.append("\n");
+        }
+        return text;
+    }
 }

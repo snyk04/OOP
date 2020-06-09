@@ -5,8 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Object> Bouquet = new ArrayList<Object>();
-        float BouquetPrice = 0;
+        Bouquet bouquet = new Bouquet();
 
         Rose RedRose = new Rose("Красная роза", 49.99f, 30, 0);
         Rose YellowRose = new Rose("Жёлтая роза", 39.99f, 10, 2);
@@ -23,48 +22,23 @@ public class Main {
         Accessory GreetingCard = new Accessory("Поздравительная открытка", 9.99f);
         Accessory Wrapper = new Accessory("Декоративная обёртка", 4.99f);
 
-        Bouquet.add(RedRose);
-        Bouquet.add(YellowRose);
-        Bouquet.add(WhiteNarcissus);
-        Bouquet.add(YellowNarcissus);
-        Bouquet.add(Chrysanthemum);
-        Bouquet.add(FreshLily);
-        Bouquet.add(Lily);
-        Bouquet.add(FreshTulip);
-        Bouquet.add(RedTulip);
-        Bouquet.add(YellowTulip);
+        bouquet.add(RedRose);
+        bouquet.add(YellowRose);
+        bouquet.add(WhiteNarcissus);
+        bouquet.add(YellowNarcissus);
+        bouquet.add(Chrysanthemum);
+        bouquet.add(FreshLily);
+        bouquet.add(Lily);
+        bouquet.add(FreshTulip);
+        bouquet.add(RedTulip);
+        bouquet.add(YellowTulip);
 
-        Bouquet.add(Tape);
-        Bouquet.add(GreetingCard);
-        Bouquet.add(Wrapper);
+        bouquet.add(Tape);
+        bouquet.add(GreetingCard);
+        bouquet.add(Wrapper);
 
-        // Считаем и выводим общую стоимость букета
-        for (Object bouquetElement: Bouquet) {
-            BouquetPrice += ((CanBePutIntoBouquet)bouquetElement).getPrice();
-        }
-        System.out.println("Общая стоимость букета: " + Math.round(BouquetPrice));
-
-        // Сортируем цветы по свежести (сначала свежие)
-        FreshnessComparator MyComparator = new FreshnessComparator();
-        Bouquet.sort(MyComparator);
-
-        // Ввод левой и правой границы диапазона длины цветка
-        Scanner MyScanner = new Scanner(System.in);
-        System.out.println("Введите левую границу:");
-        float leftBorder = MyScanner.nextFloat();
-        System.out.println("Введите правую границу:");
-        float rightBorder = MyScanner.nextFloat();
-
-        // Вывод цветков, чья длина входит в указанный диапазон
-        System.out.println("Цветы, длина которых входит в указанный диапазон:");
-        for (Object bouquetElement: Bouquet) {
-            if (bouquetElement instanceof Flower) {
-                float flowerLength = ((Flower)bouquetElement).getLength();
-                if ((flowerLength >= leftBorder) && (((Flower)bouquetElement).getLength() <= rightBorder)) {
-                    System.out.println(((Flower)bouquetElement).getName());
-                }
-            }
-        }
-
+        /* System.out.println(bouquet.countPrice());
+        bouquet.sortByFreshness();
+        bouquet.printFlowersInLengthRange(); */
     }
 }

@@ -4,11 +4,28 @@ public class Word extends MemberOfSentence {
 
     public Word(String word) {
 
-        int word_length = word.length();
-        this.letters = new Letter[word_length];
+        StringBuilder redactedWord = new StringBuilder("");
+        String punctuation = ",.?!";
+        char firstLetter;
 
-        for (int i = 0; i < word_length; i++) {
-            letters[i] = new Letter(word.charAt(i));
+        if (punctuation.contains(String.valueOf(word.charAt(0)))) {
+            firstLetter = word.charAt(1);
+            redactedWord.append(word.charAt(0));
+            redactedWord.append(" ");
+        } else {
+            firstLetter = word.charAt(0);
+        }
+        redactedWord.append(firstLetter);
+
+        for (int i = 1; i < word.length(); i++) {
+            if (!String.valueOf(word.charAt(i)).equalsIgnoreCase(String.valueOf(firstLetter))) {
+                redactedWord.append(word.charAt(i));
+            }
+        }
+
+        this.letters = new Letter[redactedWord.length()];
+        for (int i = 0; i < redactedWord.length(); i++) {
+            letters[i] = new Letter(redactedWord.charAt(i));
         }
     }
 
